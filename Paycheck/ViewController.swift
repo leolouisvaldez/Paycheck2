@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     var fedTax = 0.0
     var stateTax = 0.0
     var netPay = 0.0
-    
+    var hours = 0.0
+    var rate = 0.0
     @IBOutlet weak var hoursTextField: UITextField!
     @IBOutlet weak var rateTextField: UITextField!
     
@@ -29,6 +30,25 @@ class ViewController: UIViewController {
     }
     //calculate the net pay based on the hours and rate input
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
+        hours = Double(hoursTextField.text!)!
+        rate = Double(rateTextField.text!)!
+        if hours > 80 {
+            regularPay = 80 * rate
+            otPay = (hours - 80) * rate * 1.5
+        } else {
+            regularPay = hours * rate
+            
+        }
+    grossPay = regularPay + otPay
+        fedTax = grossPay * 0.30
+        stateTax = grossPay * 0.05
+        netPay = grossPay - fedTax - stateTax
+        print(regularPay)
+        print(otPay)
+        print(grossPay)
+        print(fedTax)
+        print(stateTax)
+        print(netPay)
         
     }
     
