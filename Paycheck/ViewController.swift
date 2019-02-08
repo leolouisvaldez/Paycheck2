@@ -23,11 +23,24 @@ class ViewController: UIViewController {
     var rate = 0.0
     @IBOutlet weak var hoursTextField: UITextField!
     @IBOutlet weak var rateTextField: UITextField!
+    @IBOutlet weak var regularPayLabel: UILabel!
+
+    @IBOutlet weak var otPayLabel: UILabel!
+    
+    @IBOutlet weak var grossPayLabel: UILabel!
+    
+    @IBOutlet weak var fedTaxLabel: UILabel!
+    
+    @IBOutlet weak var stateTaxLabel: UILabel!
+    
+    @IBOutlet weak var netPayLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
     //calculate the net pay based on the hours and rate input
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
         hours = Double(hoursTextField.text!)!
@@ -43,6 +56,12 @@ class ViewController: UIViewController {
         fedTax = grossPay * 0.30
         stateTax = grossPay * 0.05
         netPay = grossPay - fedTax - stateTax
+        regularPayLabel.text = "Regular Pay: \(regularPay)"
+        otPayLabel.text = "OT Pay: \(otPay)"
+        grossPayLabel.text = "Gross Pay: \(grossPay)"
+        fedTaxLabel.text = "Fed Tax (30%): \(fedTax)"
+        stateTaxLabel.text = "State Tax (5%): \(stateTax)"
+        netPayLabel.text = "Net Pay: \(netPay)"
         print(regularPay)
         print(otPay)
         print(grossPay)
